@@ -14,6 +14,24 @@ app.post('/login', (req, res) => {
   res.json({ token });
 });
 
+app.post('/signup', (req, res) => {
+  const { email, password } = req.body;
+  
+  // Save the user to the database or other storage system
+  // You should also handle checking for existing users with the same email address
+  saveUser(email, password);
+
+  // After saving the user, you can generate a token and send it back to the client
+  const token = generateToken(email);
+  res.json({ token });
+});
+
+function saveUser(email, password) {
+  // Save the user to your database or other storage system
+  // This is a placeholder function, replace it with your own implementation
+}
+
+
 function generateToken(email) {
   // Generate a JWT with an expiration time, using a library like jsonwebtoken
   // For example:
